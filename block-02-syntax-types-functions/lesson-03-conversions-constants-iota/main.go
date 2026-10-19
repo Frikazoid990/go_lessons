@@ -18,7 +18,7 @@ func main() {
 	const step = 5
 	var number7 int = step
 	var number8 int32 = step
-	
+
 	fmt.Printf("type numb1:%T value:%d\n", number7, number7)
 	fmt.Printf("type numb2:%T value:%d\n", number8, number8)
 
