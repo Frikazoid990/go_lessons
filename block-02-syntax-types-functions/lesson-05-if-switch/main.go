@@ -1,10 +1,13 @@
 package main
 
-func main() {
-	var plan string = "free"
-	var current, incoming int = 2, 1
-	var limit int8
+import "fmt"
 
+func main() {
+	plan := "free"
+	current := 2
+	incoming := 1
+
+	var limit int8
 	switch plan {
 	case "free":
 		limit = 3
@@ -15,26 +18,29 @@ func main() {
 	default:
 		limit = 0
 	}
-	var next uint8 = 0
 
-	// TODO: раздели неизвестный тариф и неверные числа, чтобы вывести точную причину отказа.
-	if limit != 0 && incoming > 0 && current >= 0 {
-		if res := uint8(current) + uint8(incoming); res > 0 {
-			next = res
-		}
-	} else {
-		println("Your plan is defined or number not valid")
-		println("check complete")
+	if limit == 0 {
+		fmt.Println("Неизвестный тариф")
+		fmt.Println("check complete")
+		return
+	}
+	if current < 0 || incoming <= 0 {
+		fmt.Println("Неверные числа")
+		fmt.Println("check complete")
 		return
 	}
 
-	if next < uint8(limit) {
-		println("Можно добавить, место ещё останется ", next)
-	} else if next == uint8(limit) {
-		println("Можно добавить, лимит будет достигнут ", next)
-	} else {
-		println("Невозможно добавить, лимит превышен")
+	next := uint8(current) + uint8(incoming)
+	fmt.Println("Plan:", plan, "Limit:", limit, "Next:", next)
+
+	switch {
+	case next < uint8(limit):
+		fmt.Println("Можно добавить, место ещё останется")
+	case next == uint8(limit):
+		fmt.Println("Можно добавить, лимит будет достигнут")
+	default:
+		fmt.Println("Невозможно добавить, лимит превышен")
 	}
 
-	println("check complete")
+	fmt.Println("check complete")
 }
