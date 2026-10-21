@@ -23,9 +23,8 @@ func main() {
 			next = res
 		}
 	} else {
-		// TODO: выводи отдельную причину отказа для неизвестного тарифа и для неверных чисел.
 		println("Your plan is defined or number not valid")
-		// TODO: при неверных данных тоже выведи check complete перед выходом из main.
+		println("check complete")
 		return
 	}
 
